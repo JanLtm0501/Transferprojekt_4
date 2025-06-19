@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin – Über uns bearbeiten</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <header>
+    <nav class="main-nav">
+      <div class="nav-logo">
+        <a href="index.html">
+          <img src="img/Logo/bcs_logo.png" alt="BC Stotzheim Logo" class="logo-ball">
+        </a>
+      </div>
+      <ul id="nav-links">
+        <li><a href="admin.html">Admin-Dashboard</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="admin-section">
+      <h1>📄 Über uns bearbeiten</h1>
+
+      <form id="aboutForm">
+        <div class="form-group">
+          <label for="headline">Überschrift</label>
+          <input type="text" id="headline" name="headline" value="Willkommen beim BC Stotzheim">
+        </div>
+
+        <div class="form-group">
+          <label for="intro">Einleitung / Vorstellung</label>
+          <textarea id="intro" name="intro"
+            rows="4">Der BC Stotzheim ist ein traditionsreicher Fußballverein mit Sitz in Euskirchen-Stotzheim...</textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="philosophy">Philosophie</label>
+          <textarea id="philosophy" name="philosophy"
+            rows="4">Wir glauben an Fairplay, Integration und Förderung von Talenten...</textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="contact">Kontakt (Name, E-Mail, Telefon)</label>
+          <textarea id="contact" name="contact" rows="3">1. Vorsitzender: Yannick Knegt
+E-Mail: info@bc-stotzheim.de</textarea>
+        </div>
+
+        <button type="submit">Änderungen speichern</button>
+      </form>
+    </section>
+  </main>
+
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin – Teams verwalten</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+
+  <header>
+    <nav class="main-nav">
+      <div class="nav-logo">
+        <a href="index.html">
+          <img src="img/Logo/bcs_logo.png" alt="BC Stotzheim Logo" class="logo-ball">
+        </a>
+      </div>
+      <ul id="nav-links">
+        <li><a href="admin.html">Admin-Dashboard</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="admin-section">
+      <h1>👥 Spieler verwalten</h1>
+
+      <!-- Kategorieauswahl -->
+      <div class="form-group">
+        <label for="categorySelect">Kategorie</label>
+        <select id="categorySelect" required>
+          <option value="">Bitte wählen</option>
+          <option value="senioren">Senioren</option>
+          <option value="junioren">Junioren</option>
+        </select>
+      </div>
+
+      <!-- Teamauswahl -->
+      <div class="form-group">
+        <label for="teamSelect">Team</label>
+        <select id="teamSelect" required disabled>
+          <option value="">Bitte zuerst eine Kategorie wählen</option>
+        </select>
+      </div>
+
+      <!-- Spielerformular -->
+      <form id="spielerForm" style="display: none;">
+        <div class="form-group">
+          <label for="spielerName">Spielername</label>
+          <input type="text" id="spielerName" required />
+        </div>
+
+        <div class="form-group">
+          <label for="position">Position</label>
+          <select id="position" required>
+            <option value="">Bitte wählen</option>
+            <option value="Trainer">Trainer</option>
+            <option value="Torwart">Torwart</option>
+            <option value="Abwehr">Abwehr</option>
+            <option value="Mittelfeld">Mittelfeld</option>
+            <option value="Stürmer">Stürmer</option>
+          </select>
+        </div>
+
+
+
+        <div class="form-group">
+          <label for="fotoURL">Foto-URL</label>
+          <input type="text" id="fotoURL" />
+        </div>
+
+        <button type="submit">Spieler hinzufügen</button>
+      </form>
+
+      <!-- Spieleranzeige -->
+      <div class="spieler-liste"></div>
+    </section>
+  </main>
+
+  <!-- JavaScript EINBINDUNG -->
+  <script src="js/admin_teams.js"></script>
+</body>
+
+</html>

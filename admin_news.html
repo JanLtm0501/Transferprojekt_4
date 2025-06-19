@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin – News verwalten</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <header>
+    <nav class="main-nav">
+      <div class="nav-logo">
+        <a href="index.html">
+          <img src="img/Logo/bcs_logo.png" alt="BC Stotzheim Logo" class="logo-ball">
+        </a>
+      </div>
+      <ul id="nav-links">
+        <li><a href="admin.html" class="active">Admin-Dashboard</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="admin-section">
+      <h1>📰 News verwalten</h1>
+
+      <form id="newsForm">
+        <div class="form-group">
+          <label for="newsTitle">Titel</label>
+          <input type="text" id="newsTitle" name="newsTitle" required>
+        </div>
+
+        <div class="form-group">
+          <label for="newsDate">Datum</label>
+          <input type="text" id="newsDate" name="newsDate" placeholder="z. B. 14.04.2025" required>
+        </div>
+
+        <div class="form-group">
+          <label for="newsContent">Inhalt</label>
+          <textarea id="newsContent" name="newsContent" rows="5" required></textarea>
+        </div>
+
+        <button type="submit">News hinzufügen</button>
+      </form>
+
+      <div class="news-list">
+        <h2>Vorhandene News</h2>
+        <div id="newsItems"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/admin_news.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1. Mannschaft Herren – BC Stotzheim</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link href="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/css/lightbox.min.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <header>
+        <nav class="main-nav">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="img/Logo/bcs_logo.png" alt="BC Stotzheim Logo" class="logo-ball">
+                </a>
+            </div>
+
+            <div class="burger" id="burger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+
+            <ul id="nav-links">
+                <li><a href="index.html">Startseite</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="about.html">Über uns</a></li>
+                <li><a href="teams_senioren.html">Senioren</a></li>
+                <li><a href="teams_junioren.html">Junioren</a></li>
+                <li><a href="games.html">Spiele</a></li>
+                <li><a href="downloads.html">Downloads</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="team-section">
+            <h1>1. Mannschaft Herren</h1>
+
+            <!-- Mannschaftsfoto mit Lightbox -->
+            <section class="teamfoto-section">
+                <a href="img/teams/herren1.jpg" data-lightbox="team"
+                    data-title="1. Mannschaft Herren – Saison 2024/2025">
+                    <img src="img/teams/herren1.jpg" alt="Teamfoto 1. Mannschaft Herren" class="teamfoto">
+                </a>
+            </section>
+
+            <!-- Dynamisch geladene Spieler -->
+            <div id="allePositionen"></div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/js/lightbox.min.js"></script>
+    <script>
+        const TEAM_KEY = "spieler_1_Herren";
+    </script>
+    <script src="js/team_loader.js"></script>
+</body>
+
+</html>

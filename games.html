@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spiele – BC Stotzheim</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .spiele-iframe {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .spiele-iframe h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #cc0000;
+    }
+
+    .spiele-iframe iframe {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+      margin-top: 20px;
+    }
+
+    .team-selector {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav class="main-nav">
+      <div class="nav-logo">
+        <a href="index.html">
+          <img src="img/Logo/bcs_logo.png" alt="BC Stotzheim Logo" class="logo-ball">
+        </a>
+      </div>
+      <ul id="nav-links">
+        <li><a href="index.html">Startseite</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="about.html">Über uns</a></li>
+        <li><a href="teams_senioren.html">Senioren</a></li>
+        <li><a href="teams_junioren.html">Junioren</a></li>
+        <li><a href="games.html" class="active">Spiele</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+        <li><a href="admin.php">Admin</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="spiele-iframe">
+      <h1>Spielpläne unserer Mannschaften</h1>
+
+      <div class="team-selector">
+        <label for="teamSelect">Mannschaft auswählen:</label>
+        <select id="teamSelect" onchange="switchIframe()">
+          <option value="iframe3">3. Herren</option>
+          <option value="iframe2">2. Herren</option>
+          <option value="iframe1">1. Herren</option>
+        </select>
+      </div>
+
+      <div id="iframe1" class="team-iframe" style="display: none;">
+        <iframe
+          src="https://www.fussball.de/mannschaft/bc-huerth-stotzheim-1948-ev-i-bc-huerth-stotzheim-1948-ev-mittelrhein/-/saison/2425/team-id/011MIE8H6C000000VTVG0001VTR8C1K7#!/"
+          height="900" frameborder="0" scrolling="auto"></iframe>
+      </div>
+
+      <div id="iframe2" class="team-iframe" style="display: none;">
+        <iframe src="https://www.fussball.de/ajax.team.quickview.widget/-/team-id/TEAMID_2H" height="900"
+          frameborder="0" scrolling="auto"></iframe>
+      </div>
+
+      <div id="iframe3" class="team-iframe">
+        <iframe src="https://www.fussball.de/ajax.team.quickview.widget/-/team-id/023VJ876HG000000VS548984VSVTAEJ3"
+          height="900" frameborder="0" scrolling="auto"></iframe>
+      </div>
+
+      <p style="margin-top: 20px;">
+        Sollte der Spielplan nicht angezeigt werden, klicke bitte hier:
+        <br>
+        <a href="https://www.fussball.de/mannschaft/bc-stotzheim-iii-bc-huerth-stotzheim-1948-ev-mittelrhein/-/saison/2425/team-id/023VJ876HG000000VS548984VSVTAEJ3"
+          target="_blank" class="download-btn">
+          Spielplan auf fussball.de ansehen
+        </a>
+      </p>
+    </section>
+  </main>
+
+  <script>
+    function switchIframe() {
+      const iframes = document.querySelectorAll('.team-iframe');
+      iframes.forEach(iframe => iframe.style.display = 'none');
+
+      const selected = document.getElementById('teamSelect').value;
+      document.getElementById(selected).style.display = 'block';
+    }
+  </script>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>&copy; 2025 BC Stotzheim</p>
+      <a href="impressum.html">Impressum</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>

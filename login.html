@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <nav class="main-nav">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="img/Logo/bcs_logo.png" alt="BC Stotzheim Logo" class="logo-ball" />
+                </a>
+            </div>
+            <ul id="nav-links">
+                <li><a href="index.html">Startseite</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="about.html">Über uns</a></li>
+                <li><a href="teams_senioren.html">Senioren</a></li>
+                <li><a href="teams_junioren.html">Junioren</a></li>
+                <li><a href="games.html">Spiele</a></li>
+                <li><a href="downloads.html">Downloads</a></li>
+                <li><a href="admin.html" class="active">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Loginformular -->
+    <main class="login-form">
+        <h1>Login für Admin</h1>
+        <form action="php/admin/login.php" method="POST">
+            <label for="username">Benutzername:</label><br>
+            <input type="text" name="username" required><br>
+
+            <label for="password">Passwort:</label><br>
+            <input type="password" name="password" required><br><br>
+
+            <button type="submit">Login</button>
+        </form>
+    </main>
+
+</body>
+
+</html>
