@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
     <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body>
 
-    <!-- Navigation -->
     <header>
         <nav class="main-nav">
             <div class="nav-logo">
@@ -17,6 +17,13 @@
                     <img src="img/Logo/bcs_logo.png" alt="BC Stotzheim Logo" class="logo-ball" />
                 </a>
             </div>
+
+            <div class="burger" id="burger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+
             <ul id="nav-links">
                 <li><a href="index.html">Startseite</a></li>
                 <li><a href="news.html">News</a></li>
@@ -25,25 +32,61 @@
                 <li><a href="teams_junioren.html">Junioren</a></li>
                 <li><a href="games.html">Spiele</a></li>
                 <li><a href="downloads.html">Downloads</a></li>
-                <li><a href="admin.html" class="active">Admin</a></li>
+                <li><a href="admin.php" class="active">Admin</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Loginformular -->
-    <main class="login-form">
-        <h1>Login für Admin</h1>
-        <form action="php/admin/login.php" method="POST">
-            <label for="username">Benutzername:</label><br>
-            <input type="text" name="username" required><br>
+    <div class="sponsoren-layout">
 
-            <label for="password">Passwort:</label><br>
-            <input type="password" name="password" required><br><br>
+        <!-- Linker Sponsor -->
+        <aside class="sponsor sponsor-left">
+            <div class="sponsor-slider">
+                <a href="https://www.11teamsports.com/de-de/" target="_blank">
+                    <img src="img/sponsoren/11ts.png" alt="11teamsports" />
+                </a>
+                <a href="https://bananenflanke.koeln/" target="_blank">
+                    <img src="img/sponsoren/Bananenflanke.jpeg" alt="Bananenflanke Köln" />
+                </a>
+            </div>
+        </aside>
 
-            <button type="submit">Login</button>
-        </form>
-    </main>
+        <!-- Hauptinhalt -->
+        <main class="login-form">
+            <h1>Login für Admin</h1>
+            <form action="php/admin/login.php" method="POST">
+                <label for="username">Benutzername:</label><br>
+                <input type="text" name="username" required><br>
 
+                <label for="password">Passwort:</label><br>
+                <input type="password" name="password" required><br><br>
+
+                <button type="submit">Login</button>
+            </form>
+        </main>
+
+        <!-- Rechter Sponsor -->
+        <aside class="sponsor sponsor-right">
+            <div class="sponsor-slider">
+                <a href="https://www.11teamsports.com/de-de/" target="_blank">
+                    <img src="img/sponsoren/11ts.png" alt="11teamsports" />
+                </a>
+                <a href="https://bananenflanke.koeln/" target="_blank">
+                    <img src="img/sponsoren/Bananenflanke.jpeg" alt="Bananenflanke Köln" />
+                </a>
+            </div>
+        </aside>
+
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 BC Stotzheim</p>
+            <a href="impressum.html">Impressum</a>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
 </body>
 
 </html>

@@ -33,33 +33,81 @@
         <li><a href="teams_junioren.html">Junioren</a></li>
         <li><a href="games.html">Spiele</a></li>
         <li><a href="downloads.html">Downloads</a></li>
-        <li><a href="admin.html">Admin</a></li>
+        <li><a href="admin.php">Admin</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <section class="team-section">
-      <h1>3. Mannschaft Herren</h1>
+  <div class="sponsoren-layout">
 
-      <!-- Mannschaftsfoto mit Lightbox -->
-      <section class="teamfoto-section">
-        <a href="img/teams/herren3.jpg" data-lightbox="team" data-title="3. Mannschaft Herren – Saison 2024/2025">
-          <img src="img/teams/herren3.jpg" alt="Teamfoto 3. Mannschaft Herren" class="teamfoto">
+    <!-- Linker Sponsor -->
+    <aside class="sponsor sponsor-left">
+      <div class="sponsor-slider">
+        <a href="https://www.11teamsports.com/de-de/" target="_blank">
+          <img src="img/sponsoren/11ts.png" alt="11teamsports" />
         </a>
-      </section>
+        <a href="https://bananenflanke.koeln/" target="_blank">
+          <img src="img/sponsoren/Bananenflanke.jpeg" alt="Bananenflanke Köln" />
+        </a>
+        <a href="https://www.jako.com/de-de/" target="_blank">
+          <img src="img/sponsoren/jako.svg" alt="jako" />
+        </a>
+        <a href="https://www.m-baer-gmbh.de/" target="_blank">
+          <img src="img/sponsoren/baer.png" alt="baer" />
+        </a>
+      </div>
+    </aside>
 
-      <!-- Dynamisch geladene Spieler -->
-      <div id="allePositionen"></div>
-    </section>
-  </main>
+    <!-- Hauptinhalt -->
+    <main>
+      <section class="team-section">
+        <h1>3. Mannschaft Herren</h1>
+
+        <!-- Mannschaftsfoto mit Lightbox -->
+        <div class="teamfoto-section">
+          <a href="img/teams/herren3.jpg" data-lightbox="team" data-title="3. Mannschaft Herren – Saison 2024/2025">
+            <img src="img/teams/herren3.jpg" alt="Teamfoto 3. Mannschaft Herren" class="teamfoto">
+          </a>
+        </div>
+
+        <!-- Dynamisch geladene Spieler -->
+        <div id="allePositionen"></div>
+      </section>
+    </main>
+
+    <!-- Rechter Sponsor -->
+    <aside class="sponsor sponsor-right">
+      <div class="sponsor-slider">
+        <a href="https://www.11teamsports.com/de-de/" target="_blank">
+          <img src="img/sponsoren/11ts.png" alt="11teamsports" />
+        </a>
+        <a href="https://bananenflanke.koeln/" target="_blank">
+          <img src="img/sponsoren/Bananenflanke.jpeg" alt="Bananenflanke Köln" />
+        </a>
+        <a href="https://www.jako.com/de-de/" target="_blank">
+          <img src="img/sponsoren/jako.svg" alt="jako" />
+        </a>
+        <a href="https://www.m-baer-gmbh.de/" target="_blank">
+          <img src="img/sponsoren/baer.png" alt="baer" />
+        </a>
+      </div>
+    </aside>
+
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>&copy; 2025 BC Stotzheim</p>
+      <a href="impressum.html">Impressum</a>
+    </div>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/js/lightbox.min.js"></script>
   <script>
     const TEAM_KEY = "spieler_3_Herren";
   </script>
-
   <script src="js/team_loader.js"></script>
+  <script src="js/main.js"></script>
 </body>
 
 </html>

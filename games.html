@@ -43,6 +43,13 @@
           <img src="img/Logo/bcs_logo.png" alt="BC Stotzheim Logo" class="logo-ball">
         </a>
       </div>
+
+      <div class="burger" id="burger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+
       <ul id="nav-links">
         <li><a href="index.html">Startseite</a></li>
         <li><a href="news.html">News</a></li>
@@ -56,55 +63,99 @@
     </nav>
   </header>
 
-  <main>
-    <section class="spiele-iframe">
-      <h1>Spielpläne unserer Mannschaften</h1>
+  <div class="sponsoren-layout">
 
-      <div class="team-selector">
-        <label for="teamSelect">Mannschaft auswählen:</label>
-        <select id="teamSelect" onchange="switchIframe()">
-          <option value="iframe3">3. Herren</option>
-          <option value="iframe2">2. Herren</option>
-          <option value="iframe1">1. Herren</option>
-        </select>
-      </div>
-
-      <div id="iframe1" class="team-iframe" style="display: none;">
-        <iframe
-          src="https://www.fussball.de/mannschaft/bc-huerth-stotzheim-1948-ev-i-bc-huerth-stotzheim-1948-ev-mittelrhein/-/saison/2425/team-id/011MIE8H6C000000VTVG0001VTR8C1K7#!/"
-          height="900" frameborder="0" scrolling="auto"></iframe>
-      </div>
-
-      <div id="iframe2" class="team-iframe" style="display: none;">
-        <iframe src="https://www.fussball.de/ajax.team.quickview.widget/-/team-id/TEAMID_2H" height="900"
-          frameborder="0" scrolling="auto"></iframe>
-      </div>
-
-      <div id="iframe3" class="team-iframe">
-        <iframe src="https://www.fussball.de/ajax.team.quickview.widget/-/team-id/023VJ876HG000000VS548984VSVTAEJ3"
-          height="900" frameborder="0" scrolling="auto"></iframe>
-      </div>
-
-      <p style="margin-top: 20px;">
-        Sollte der Spielplan nicht angezeigt werden, klicke bitte hier:
-        <br>
-        <a href="https://www.fussball.de/mannschaft/bc-stotzheim-iii-bc-huerth-stotzheim-1948-ev-mittelrhein/-/saison/2425/team-id/023VJ876HG000000VS548984VSVTAEJ3"
-          target="_blank" class="download-btn">
-          Spielplan auf fussball.de ansehen
+    <!-- Linker Sponsor -->
+    <aside class="sponsor sponsor-left">
+      <div class="sponsor-slider">
+        <a href="https://www.11teamsports.com/de-de/" target="_blank">
+          <img src="img/sponsoren/11ts.png" alt="11teamsports" />
         </a>
-      </p>
-    </section>
-  </main>
+        <a href="https://bananenflanke.koeln/" target="_blank">
+          <img src="img/sponsoren/Bananenflanke.jpeg" alt="Bananenflanke Köln" />
+        </a>
+        <a href="https://www.jako.com/de-de/" target="_blank">
+          <img src="img/sponsoren/jako.svg" alt="jako" />
+        </a>
+        <a href="https://www.m-baer-gmbh.de/" target="_blank">
+          <img src="img/sponsoren/baer.png" alt="baer" />
+        </a>
+      </div>
+    </aside>
 
+    <!-- Hauptinhalt -->
+    <main>
+      <section class="spiele-iframe">
+        <h1>Spielpläne unserer Mannschaften</h1>
+
+        <div class="team-selector">
+          <label for="teamSelect">Mannschaft auswählen:</label>
+          <select id="teamSelect" onchange="switchIframe()">
+            <option value="iframe3">3. Herren</option>
+            <option value="iframe2">2. Herren</option>
+            <option value="iframe1">1. Herren</option>
+          </select>
+        </div>
+
+        <div id="iframe1" class="team-iframe" style="display: none;">
+          <iframe
+            src="https://www.fussball.de/mannschaft/bc-stotzheim-i-bc-huerth-stotzheim-1948-ev-mittelrhein/-/saison/2425/team-id/011MIEFK8G000000VTVG0001VTR8C1K7#!/"
+            height="900" frameborder="0" scrolling="auto"></iframe>
+        </div>
+
+        <div id="iframe2" class="team-iframe" style="display: none;">
+          <iframe
+            src="https://www.fussball.de/mannschaft/bc-stotzheim-ii-bc-huerth-stotzheim-1948-ev-mittelrhein/-/saison/2425/team-id/011MIAJ240000000VTVG0001VTR8C1K7#!/"
+            height="900" frameborder="0" scrolling="auto"></iframe>
+        </div>
+
+        <div id="iframe3" class="team-iframe">
+          <iframe
+            src="https://www.fussball.de/mannschaft/bc-stotzheim-iii-bc-huerth-stotzheim-1948-ev-mittelrhein/-/saison/2425/team-id/023VJ876HG000000VS548984VSVTAEJ3#!/"
+            height="900" frameborder="0" scrolling="auto"></iframe>
+        </div>
+
+        <p style="margin-top: 20px;">
+          <a href="https://www.fussball.de/verein/bc-huerth-stotzheim-1948-ev-mittelrhein/-/id/00ES8GN92C00009UVV0AG08LVUPGND5I#!/"
+            target="_blank" class="download-btn">
+            Junioren sichtbar auf fussball.de
+          </a>
+        </p>
+      </section>
+    </main>
+
+    <!-- Rechter Sponsor -->
+    <aside class="sponsor sponsor-right">
+      <div class="sponsor-slider">
+        <a href="https://www.11teamsports.com/de-de/" target="_blank">
+          <img src="img/sponsoren/11ts.png" alt="11teamsports" />
+        </a>
+        <a href="https://bananenflanke.koeln/" target="_blank">
+          <img src="img/sponsoren/Bananenflanke.jpeg" alt="Bananenflanke Köln" />
+        </a>
+        <a href="https://www.jako.com/de-de/" target="_blank">
+          <img src="img/sponsoren/jako.svg" alt="jako" />
+        </a>
+        <a href="https://www.m-baer-gmbh.de/" target="_blank">
+          <img src="img/sponsoren/baer.png" alt="baer" />
+        </a>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Script: Iframe-Wechsel -->
   <script>
     function switchIframe() {
       const iframes = document.querySelectorAll('.team-iframe');
       iframes.forEach(iframe => iframe.style.display = 'none');
-
       const selected = document.getElementById('teamSelect').value;
       document.getElementById(selected).style.display = 'block';
     }
   </script>
+
+  <!-- Burger-Menü aktivieren -->
+  <script src="js/main.js"></script>
 
   <!-- Footer -->
   <footer class="site-footer">
@@ -114,7 +165,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
 </body>
 
 </html>
