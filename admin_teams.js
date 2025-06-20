@@ -1,135 +1,182 @@
-// ======= admin_teams.js =======
+/* admin_teams.js  –  Version 20 Jun 2025  */
 
-const teamDaten = {
-  senioren: ["1. Herren", "2. Herren", "3. Herren"],
-  junioren: ["B1", "B2", "C1", "D1", "D2", "D3", "D4", "E1", "E2", "E3", "F1", "F2", "Bambini 1", "Bambini KG"]
+/* =========================================
+   Konstanten & Hilfsfunktionen
+========================================= */
+
+const POS_ORDER = ["Trainer", "Torwart", "Abwehr", "Mittelfeld", "Stürmer"];
+
+/**
+ * Liefert den Local-Storage-Key für ein Team.
+ * Beispiel:  ("senioren", "3_Herren")  ->  "spieler_senioren_3_Herren"
+ */
+function teamKey(kategorie, team) {
+    return `spieler_${kategorie}_${team}`; // eindeutig & lesbar
+}
+
+function loadPlayers(key) {
+    try {
+        return JSON.parse(localStorage.getItem(key)) || [];
+    } catch (e) {
+        console.error("Fehler beim Laden:", e);
+        return [];
+    }
+}
+
+function savePlayers(key, list) {
+    localStorage.setItem(key, JSON.stringify(list));
+}
+
+function sortByPos(arr) {
+    return arr.slice().sort((a, b) => {
+        const idxA = POS_ORDER.indexOf(a.position);
+        const idxB = POS_ORDER.indexOf(b.position);
+        if (idxA === idxB) return a.name.localeCompare(b.name, "de");
+        if (idxA === -1 && idxB === -1) return a.position.localeCompare(b.position, "de");
+        if (idxA === -1) return 1;
+        if (idxB === -1) return -1;
+        return idxA - idxB;
+    });
+}
+
+function capitalize(str = "") {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+/* =========================================
+   DOM-Elemente
+========================================= */
+
+const categorySel = document.getElementById("categorySelect");
+const teamSel = document.getElementById("teamSelect");
+const form = document.getElementById("spielerForm");
+const nameInput = document.getElementById("spielerName");
+const posInput = document.getElementById("position");
+const fotoInput = document.getElementById("fotoURL");
+const listNode = document.querySelector(".spieler-liste");
+
+/* =========================================
+   Datenquelle & aktueller Status
+========================================= */
+
+let currentCategory = "";
+let currentTeam = "";
+
+/* =========================================
+   Rendering
+========================================= */
+
+function renderList(data) {
+    listNode.innerHTML = "";
+    if (data.length === 0) {
+        listNode.innerHTML = "<p>Keine Spieler vorhanden.</p>";
+        return;
+    }
+
+    const sortiert = sortByPos(data);
+
+    sortiert.forEach(p => {
+        const li = document.createElement("li");
+        li.dataset.id = p.id;
+
+        li.innerHTML = `
+      <strong>${p.name}</strong>
+      &nbsp;–&nbsp;${capitalize(p.position || "unbekannt")}
+      <button class="delete-btn" type="button">Löschen</button>
+    `;
+        listNode.appendChild(li);
+    });
+}
+
+/* =========================================
+   Team-Auswahllogik
+========================================= */
+
+// Team-Dropdown je nach Kategorie befüllen
+const TEAMS = {
+    senioren: ["1_Herren", "2_Herren", "3_Herren"],
+    junioren: [
+        "B1", "B2", "C1", "D1", "D2", "D3", "D4",
+        "E1", "E2", "E3", "F1", "F2", "Bambini1", "BambiniKG"
+    ]
 };
 
-const categorySelect = document.getElementById("categorySelect");
-const teamSelect = document.getElementById("teamSelect");
-const spielerForm = document.getElementById("spielerForm");
-const spielerListe = document.querySelector(".spieler-liste");
+categorySel.addEventListener("change", () => {
+    currentCategory = categorySel.value;
+    teamSel.innerHTML = "<option value=''>Bitte wählen</option>";
 
-categorySelect.addEventListener("change", () => {
-  const selectedCategory = categorySelect.value;
-  teamSelect.innerHTML = "";
-
-  if (!selectedCategory || !teamDaten[selectedCategory]) {
-    teamSelect.disabled = true;
-    spielerForm.style.display = "none";
-    return;
-  }
-
-  teamSelect.disabled = false;
-
-  const defaultOption = document.createElement("option");
-  defaultOption.textContent = "Bitte Team wählen";
-  defaultOption.value = "";
-  teamSelect.appendChild(defaultOption);
-
-  teamDaten[selectedCategory].forEach(team => {
-    const option = document.createElement("option");
-    option.value = team;
-    option.textContent = team;
-    teamSelect.appendChild(option);
-  });
-
-  spielerForm.style.display = "none";
-  spielerListe.innerHTML = "";
+    if (!currentCategory) {
+        teamSel.disabled = true;
+        listNode.innerHTML = "";
+        form.style.display = "none";
+        return;
+    }
+    TEAMS[currentCategory].forEach(t =>
+        teamSel.insertAdjacentHTML("beforeend", `<option value="${t}">${t.replace("_", " ")}</option>`)
+    );
+    teamSel.disabled = false;
+    form.style.display = "none";
+    listNode.innerHTML = "";
 });
 
-teamSelect.addEventListener("change", () => {
-  const selectedTeam = teamSelect.value;
-  if (selectedTeam) {
-    spielerForm.style.display = "block";
-    renderSpielerListe(selectedTeam);
-  } else {
-    spielerForm.style.display = "none";
-    spielerListe.innerHTML = "";
-  }
+teamSel.addEventListener("change", () => {
+    currentTeam = teamSel.value;
+    if (!currentTeam) {
+        form.style.display = "none";
+        listNode.innerHTML = "";
+        return;
+    }
+    form.reset();
+    form.style.display = "block";
+    const data = loadPlayers(teamKey(currentCategory, currentTeam));
+    renderList(data);
 });
 
-spielerForm.addEventListener("submit", e => {
-  e.preventDefault();
+/* =========================================
+   Formular: Spieler hinzufügen
+========================================= */
 
-  const name = document.getElementById("spielerName").value.trim();
-  const rawPosition = document.getElementById("position").value.trim().toLowerCase();
-  const position = normalisierePosition(rawPosition);
-  const foto = document.getElementById("fotoURL").value.trim();
-  const team = teamSelect.value;
+form.addEventListener("submit", e => {
+    e.preventDefault();
+    if (!currentCategory || !currentTeam) return;
 
-  if (!name || !position || !team) return;
+    const player = {
+        id: Date.now().toString(36),
+        name: nameInput.value.trim(),
+        position: posInput.value.trim().toLowerCase(),
+        foto: fotoInput.value.trim()
+    };
+    if (!player.name || !player.position) {
+        alert("Name und Position sind erforderlich!");
+        return;
+    }
 
-  const spieler = { name, position, foto };
-  const key = buildStorageKey(team);
-
-  const vorhandene = JSON.parse(localStorage.getItem(key)) || [];
-  vorhandene.push(spieler);
-  localStorage.setItem(key, JSON.stringify(vorhandene));
-
-  spielerForm.reset();
-  renderSpielerListe(team);
+    const key = teamKey(currentCategory, currentTeam);
+    const list = loadPlayers(key);
+    list.push(player);
+    savePlayers(key, list);
+    renderList(list);
+    form.reset();
 });
 
-function renderSpielerListe(team) {
-  const key = buildStorageKey(team);
-  const spieler = JSON.parse(localStorage.getItem(key)) || [];
+/* =========================================
+   Löschen mit Event-Delegation
+========================================= */
 
-  spielerListe.innerHTML = `<h3>Spieler in ${team}</h3>`;
+listNode.addEventListener("click", e => {
+    if (!e.target.classList.contains("delete-btn")) return;
+    const id = e.target.closest("li").dataset.id;
+    const key = teamKey(currentCategory, currentTeam);
+    const list = loadPlayers(key).filter(p => p.id !== id);
+    savePlayers(key, list);
+    renderList(list);
+});
 
-  if (spieler.length === 0) {
-    spielerListe.innerHTML += "<p>Keine Spieler eingetragen.</p>";
-    return;
-  }
+/* =========================================
+   Initialisierung (Seite frisch geladen)
+========================================= */
 
-  const list = document.createElement("ul");
-  spieler.forEach((s, index) => {
-    const li = document.createElement("li");
-    li.innerHTML = `
-      <strong>${s.name}</strong> – ${formatierePosition(s.position)}
-      <button data-index="${index}" class="delete-btn">Löschen</button>
-    `;
-    list.appendChild(li);
-  });
-
-  spielerListe.appendChild(list);
-
-  document.querySelectorAll(".delete-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const index = btn.getAttribute("data-index");
-      const updated = JSON.parse(localStorage.getItem(key)) || [];
-      updated.splice(index, 1);
-      localStorage.setItem(key, JSON.stringify(updated));
-      renderSpielerListe(team);
-    });
-  });
-}
-
-function buildStorageKey(team) {
-  return `spieler_${team.replace(/\s+/g, "_").replace(/\./g, "")}`;
-}
-
-function normalisierePosition(pos) {
-  const map = {
-    trainer: "trainer",
-    torwart: "torwart",
-    abwehr: "abwehr",
-    mittelfeld: "mittelfeld",
-    stürmer: "stürmer",
-    stuermer: "stürmer" // falls ö durch ue ersetzt wird
-  };
-
-  return map[pos.toLowerCase()] || pos.toLowerCase();
-}
-
-function formatierePosition(pos) {
-  const map = {
-    trainer: "Trainer",
-    torwart: "Torwart",
-    abwehr: "Abwehr",
-    mittelfeld: "Mittelfeld",
-    stürmer: "Stürmer"
-  };
-
-  return map[pos.toLowerCase()] || pos.charAt(0).toUpperCase() + pos.slice(1);
-}
+document.addEventListener("DOMContentLoaded", () => {
+    // Falls Kategorie & Team vorausgewählt bleiben sollen, könnte man
+    // hier aus dem LocalStorage letzte Auswahl lesen und wieder setzen.
+});

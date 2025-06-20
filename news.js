@@ -1,21 +1,35 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const container = document.getElementById("allNews");
-    const news = JSON.parse(localStorage.getItem("newsList")) || [];
-  
-    if (news.length === 0) {
-      container.innerHTML = "<p>Es sind derzeit keine News vorhanden.</p>";
-      return;
+    const newsContainer = document.getElementById("allNews");
+    const newsList = JSON.parse(localStorage.getItem("newsList")) || [];
+
+    if (!newsContainer) return;
+
+    if (newsList.length === 0) {
+        newsContainer.innerHTML = "<p>Keine News vorhanden.</p>";
+        return;
     }
-  
-    news.forEach(item => {
-      const box = document.createElement("div");
-      box.className = "news-box";
-      box.innerHTML = `
-        <span class="news-date">${item.date}</span>
-        <h3>${item.title}</h3>
-        <p>${item.content}</p>
-      `;
-      container.appendChild(box);
+
+    // Sortiere nach Datum absteigend (neueste zuerst)
+    newsList.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    newsList.forEach(news => {
+        const box = document.createElement("div");
+        box.className = "news-box";
+
+        const date = document.createElement("span");
+        date.className = "news-date";
+        date.textContent = news.date;
+
+        const title = document.createElement("h3");
+        title.textContent = news.title;
+
+        const content = document.createElement("p");
+        content.textContent = news.content;
+
+        box.appendChild(date);
+        box.appendChild(title);
+        box.appendChild(content);
+
+        newsContainer.appendChild(box);
     });
-  });
-  
+});
