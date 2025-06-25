@@ -2,10 +2,10 @@
 <html lang="de">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>News – BC Stotzheim</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body>
@@ -14,9 +14,18 @@
     <nav class="main-nav">
       <div class="nav-logo">
         <a href="index.html">
-          <img src="img/Logo/bcs_logo.png" alt="BC Stotzheim Logo" class="logo-ball">
+          <img src="img/Logo/bcs_logo.png" alt="BC Stotzheim Logo" class="logo-ball" />
         </a>
       </div>
+
+      <!-- Burger-Menü Button -->
+      <div class="burger" id="burger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+
+      <!-- Navigationslinks -->
       <ul id="nav-links">
         <li><a href="index.html">Startseite</a></li>
         <li><a href="news.html" class="active">News</a></li>
@@ -30,18 +39,58 @@
     </nav>
   </header>
 
-  <main>
+
+  <main class="sponsoren-layout">
+
+    <!-- Linker Sponsor -->
+    <aside class="sponsor sponsor-left">
+      <div class="sponsor-slider">
+        <a href="https://www.11teamsports.com/de-de/" target="_blank">
+          <img src="img/sponsoren/11ts.png" alt="11teamsports" />
+        </a>
+        <a href="https://bananenflanke.koeln/" target="_blank">
+          <img src="img/sponsoren/Bananenflanke.jpeg" alt="Bananenflanke Köln" />
+        </a>
+        <a href="https://www.jako.com/de-de/" target="_blank">
+          <img src="img/sponsoren/jako.svg" alt="jako" />
+        </a>
+        <a href="https://www.m-baer-gmbh.de/" target="_blank">
+          <img src="img/sponsoren/baer.png" alt="baer" />
+        </a>
+      </div>
+    </aside>
+
+    <!-- Hauptinhalt -->
     <section class="news-preview">
-      <h1>Alle Neuigkeiten</h1>
+      <h1 class="news-heading">Alle Neuigkeiten</h1>
+      <br><br>
       <div class="news-container" id="allNews">
         <!-- News-Artikel werden hier dynamisch eingefügt -->
       </div>
     </section>
+
+    <!-- Rechter Sponsor -->
+    <aside class="sponsor sponsor-right">
+      <div class="sponsor-slider">
+        <a href="https://www.11teamsports.com/de-de/" target="_blank">
+          <img src="img/sponsoren/11ts.png" alt="11teamsports" />
+        </a>
+        <a href="https://bananenflanke.koeln/" target="_blank">
+          <img src="img/sponsoren/Bananenflanke.jpeg" alt="Bananenflanke Köln" />
+        </a>
+        <a href="https://www.jako.com/de-de/" target="_blank">
+          <img src="img/sponsoren/jako.svg" alt="jako" />
+        </a>
+        <a href="https://www.m-baer-gmbh.de/" target="_blank">
+          <img src="img/sponsoren/baer.png" alt="baer" />
+        </a>
+      </div>
+    </aside>
+
   </main>
 
   <script src="js/news.js"></script>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="footer-content">
       <p>&copy; 2025 BC Stotzheim</p>
@@ -50,6 +99,7 @@
   </footer>
 
   <script src="js/main.js"></script>
+
 </body>
 
 </html>
